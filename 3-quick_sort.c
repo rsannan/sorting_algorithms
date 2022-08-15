@@ -73,5 +73,8 @@ void quicker_sort(int *array, size_t low, size_t high, size_t n)
 */
 void quick_sort(int *array, size_t size)
 {
-	quicker_sort(array, 0, size - 1, size);
+	if (size > 2)
+	{
+		quicker_sort(array, 0, size - 1, size);
+	}
 }

@@ -31,6 +31,6 @@ void swap_node(listint_t *i, listint_t *j);
 void swap_node_top(listint_t *i, listint_t *j);
 void swap_node_end(listint_t *i, listint_t *j);
 size_t partition(int *array, size_t low, size_t high, size_t n);
-void quicker_sort(int *array,size_t low, size_t high, size_t n);
+void quicker_sort(int *array, size_t low, size_t high, size_t n);
 
 #endif
