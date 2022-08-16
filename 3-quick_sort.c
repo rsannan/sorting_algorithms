@@ -10,7 +10,7 @@
 */
 int partition(int *array, int low, int high, size_t n)
 {
-  	int tmp, i;
+	int tmp, i;
 	int j;
 
 	i = low - 1;
@@ -52,7 +52,8 @@ int partition(int *array, int low, int high, size_t n)
 */
 void quicker_sort(int *array, int low, int high, size_t n)
 {
-    int pivot;
+	int pivot;
+
 	if (low < high)
 	{
 		pivot = partition(array, low, high, n);
