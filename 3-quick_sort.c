@@ -1,19 +1,5 @@
 #include "sort.h"
 /**
-* swap- swaps two nodes
-* @x: node 1
-* @y: node 2
-*
-* Return: void
-*/
-void swap(int *x, int *y)
-{
-	int tmp = *x;
-	*x = *y;
-	*y = tmp;
-}
-
-/**
 * partition- divides a list based on pivot
 * @array: list
 * @low: lowerbound of list
@@ -22,23 +8,37 @@ void swap(int *x, int *y)
 *
 * Return: pivot point
 */
-size_t partition(int *array, size_t low, size_t high, size_t n)
+int partition(int *array, int low, int high, size_t n)
 {
-	int pivot = array[high];
-	size_t i = low, j;
+  	int tmp, i;
+	int j;
+
+	i = low - 1;
 
 	for (j = low; j < high; j++)
 	{
-		if (array[j] <= pivot)
+		if (array[j] < array[high])
 		{
-			swap(&array[i], &array[j]);
 			i++;
+			if (i != j)
+			{
+				tmp = array[i];
+				array[i] = array[j];
+				array[j] = tmp;
+				print_array(array, n);
+			}
 		}
 	}
 
-	swap(&array[i], &array[high]);
-	print_array(array, n);
-	return (i);
+	if (array[high] < array[i + 1])
+	{
+		tmp = array[i + 1];
+		array[i + 1] = array[high];
+		array[high] = tmp;
+		print_array(array, n);
+	}
+
+	return (i + 1);
 }
 
 /**
@@ -50,16 +50,13 @@ size_t partition(int *array, size_t low, size_t high, size_t n)
 *
 * Return: Void
 */
-void quicker_sort(int *array, size_t low, size_t high, size_t n)
+void quicker_sort(int *array, int low, int high, size_t n)
 {
+    int pivot;
 	if (low < high)
 	{
-		size_t pivot = partition(array, low, high, n);
-
-		if (pivot != 0)
-		{
-			quicker_sort(array, low, pivot - 1, n);
-		}
+		pivot = partition(array, low, high, n);
+		quicker_sort(array, low, pivot - 1, n);
 		quicker_sort(array, pivot + 1, high, n);
 	}
 }
